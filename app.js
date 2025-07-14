@@ -20,13 +20,13 @@ app.get('/', (req, res) => {
   res.send('🚀 API is running');
 });
 
-// Connect to MongoDB and start the server.
+// Export the handler for AWS Lambda
+export const handler = serverless(app);
+
+// // Connect to MongoDB and start the server.
 const startServer = async () => {
   try {
-    await mongoose.connect(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(MONGO_URI);
     console.log('Connected to MongoDB');
 
     app.listen(PORT, () => {

@@ -1,0 +1,15 @@
+service: product-api
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  environment:
+    MONGO_URI: 'your-mongodb-uri'
+    JWT_SECRET: 'your-secret-key'
+
+functions:
+  api:
+    handler: app.handler
+    events:
+      - httpApi: '*'
